@@ -7,6 +7,7 @@ import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { RouterModule } from '../../node_modules/@angular/router';
 import { Error404Component } from './errors/404.component';
+import { AuthService } from './user/auth.service';
 
 import {
   EventService,
@@ -17,6 +18,7 @@ import {
   EventListResolver,
   CreateEventComponent
 } from './events/index'
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {
     EventRouteActivator,
     {provide: 'canDeactivateCreateEvent', 
     useValue: checkDirtyState },
-    EventListResolver
+    EventListResolver,
+    AuthService
   ],
   bootstrap: [EventsAppComponent]
 })
