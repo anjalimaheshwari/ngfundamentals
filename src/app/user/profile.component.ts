@@ -5,21 +5,32 @@ import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
   profileForm: FormGroup;
+  private lastName: FormControl;
+  private firstName: FormControl;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    let firstName = new FormControl(this.authService.currentUser.firstName, Validators.required);
-    let lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required,
+    Validators.pattern('[a-zA-Z].*')]);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
     this.profileForm = new FormGroup({
-      firstName: firstName,
-      lastName: lastName
+      firstName: this.firstName,
+      lastName: this.lastName
     })
   }
   
+  validateLastName() {
+    return this.lastName.valid || this.lastName.untouched;
+  }
+
+  validateFirstName() {
+    return this.firstName.valid || this.firstName.untouched;
+  }
   
   cancel() {
     this.router.navigate(['/events']);
