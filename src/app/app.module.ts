@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsAppComponent } from './events-app.component';
 import { NavComponent } from './nav/nav.component';
-import { TOASTR_TOKEN, IToastr, JQ_TOKEN, CollapsibleWellComponent } from './common/index';
 import { appRoutes } from './routes';
 import { RouterModule } from '../../node_modules/@angular/router';
 import { Error404Component } from './errors/404.component';
@@ -25,6 +24,14 @@ import {
   DurationPipe
 } from './events/index'
 
+import {
+  TOASTR_TOKEN,
+  CollapsibleWellComponent,
+  IToastr,
+  JQ_TOKEN,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common/index'
 
 @NgModule({
   declarations: [
@@ -38,6 +45,8 @@ import {
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective,
     DurationPipe
   ],
   imports: [
@@ -49,6 +58,7 @@ import {
   providers: [
     EventService, 
     { provide: TOASTR_TOKEN, useValue: toastr},
+    { provide: JQ_TOKEN ,useValue: jQuery},
     EventRouteActivator,
     {provide: 'canDeactivateCreateEvent', 
     useValue: checkDirtyState },
