@@ -18,7 +18,6 @@ import {
   EventDetailComponent,
   EventThumbnail,
   EventsListComponent,
-  EventRouteActivator,
   EventListResolver,
   CreateEventComponent,
   CreateSessionComponent,
@@ -26,7 +25,8 @@ import {
   UpvoteComponent,
   DurationPipe,
   VoterService,
-  LocationValidator
+  LocationValidator,
+  EventResolver
 } from './events/index'
 
 import {
@@ -67,7 +67,7 @@ import {
     EventService, 
     { provide: TOASTR_TOKEN, useValue: toastr},
     { provide: JQ_TOKEN ,useValue: jQuery},
-    EventRouteActivator,
+    EventResolver,
     {provide: 'canDeactivateCreateEvent', 
     useValue: checkDirtyState },
     EventListResolver,
